@@ -1,0 +1,30 @@
+FONDA JOSÉ — MENÚ DIGITAL / MVP
+
+ARCHIVOS
+- index.html: interfaz del cliente (React + Babel CDN) y panel de administración (Vue 3 CDN).
+- manifest.json: metadatos para instalación como PWA.
+- sw.js: caché de archivos locales y fallback offline.
+- icon-192.svg e icon-512.svg: iconos de la aplicación.
+
+CÓMO EJECUTAR EN WINDOWS
+1. Extrae el ZIP a una carpeta.
+2. Abre la carpeta en Visual Studio Code.
+3. Si tienes la extensión Live Server, haz clic derecho en index.html y elige “Open with Live Server”.
+   Alternativa: abre una terminal en la carpeta y ejecuta: python -m http.server 8000
+   Después visita http://localhost:8000
+4. Para probar el panel, pulsa “Administración” e ingresa admin123.
+5. Haz un pedido en la vista cliente, regresa a administración y acepta el pedido para descontar stock.
+
+FUNCIONES DEL MVP
+- React: MenuCard, carrito con useState, cantidades de 0.5, 1 y 2 porciones, subtotales y total final.
+- Vue 3: login de demostración, edición de precios/stock, alta y retiro lógico de platillos, aceptación/rechazo y cambio de estado de pedidos.
+- Al aceptar, verifica inventario antes de descontar stock y evita aceptar dos veces un mismo pedido pendiente.
+- Ticket con folio, detalle e impresión.
+- LocalStorage: fonda_menu, fonda_pedidos y fonda_inventario.
+- Diseño responsivo terracota y crema.
+
+LIMITACIONES IMPORTANTES
+- Es una demostración local: LocalStorage pertenece a un navegador/dispositivo. No sincroniza de forma confiable entre teléfonos o computadoras distintas.
+- La contraseña admin123 es solo para demostración y se puede ver en el código. No usar en producción.
+- Los scripts de React, ReactDOM, Babel y Vue se cargan desde CDN, por lo que la primera carga necesita Internet. El Service Worker guarda el shell local, pero no almacena de forma confiable los CDN; no se garantiza funcionamiento completo sin conexión.
+- Para uso real se recomienda backend, base de datos compartida, autenticación segura y operaciones transaccionales de inventario.

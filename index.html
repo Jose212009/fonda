@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#a9513d" />
+  <meta name="description" content="Fonda José: menú digital, paquetes del día, pedidos y control de inventario." />
+  <link rel="manifest" href="manifest.json" />
+  <title>Fonda José | Menú y Paquetes</title>
+  <style>
+    :root{--terracota:#a9513d;--terracota-dark:#813a2d;--crema:#fff8ec;--crema-2:#f5e8d3;--cafe:#442e27;--verde:#657b55;--rojo:#a33b32;--borde:#e6d5c1;--sombra:0 12px 28px rgba(68,46,39,.09)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--crema);color:var(--cafe);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:.72rem 1rem;font-weight:750;transition:transform .15s,opacity .15s}button:hover{transform:translateY(-1px)}button:disabled{opacity:.45;cursor:not-allowed;transform:none}.btn-primary{background:var(--terracota);color:#fff}.btn-secondary{background:var(--crema-2);color:var(--cafe)}.btn-danger{background:#f6dfd9;color:#842f27}.btn-green{background:var(--verde);color:white}.site-header{background:var(--terracota);color:#fff;padding:1.25rem clamp(1rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}.brand{display:flex;align-items:center;gap:.85rem}.brand-icon{font-size:2.3rem;background:#ffffff24;width:58px;height:58px;display:grid;place-items:center;border-radius:18px}.brand h1{font-family:Georgia,serif;margin:0;font-size:clamp(1.5rem,3vw,2.2rem)}.brand p{margin:.15rem 0 0;color:#ffeadc;font-size:.9rem}.header-actions{display:flex;gap:.6rem;flex-wrap:wrap}.header-actions button{background:#fff2e7;color:var(--terracota-dark)}.hero{max-width:1200px;margin:1.5rem auto 0;padding:0 1rem}.hero-card{border-radius:24px;padding:clamp(1.2rem,4vw,2.2rem);background:linear-gradient(115deg,#f3dfc3,#fff6e7);display:flex;justify-content:space-between;align-items:center;gap:1rem;overflow:hidden}.hero h2{font:clamp(1.7rem,4vw,2.7rem) Georgia,serif;margin:0 0 .5rem}.hero p{margin:0;max-width:600px;line-height:1.55}.hero-emoji{font-size:clamp(3rem,8vw,6rem);filter:drop-shadow(0 8px 10px #7d473222)}.tabs{max-width:1200px;margin:1.4rem auto 0;padding:0 1rem;display:flex;gap:.6rem;flex-wrap:wrap}.tab{background:transparent;border:1px solid var(--borde);color:var(--cafe)}.tab.active{background:var(--cafe);color:white;border-color:var(--cafe)}main{max-width:1200px;margin:1.2rem auto 3rem;padding:0 1rem}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:1.3rem 0}.section-heading h2{font:1.8rem Georgia,serif;margin:0}.section-heading p{color:#7c665a;margin:.3rem 0 0}.filters{display:flex;gap:.6rem;flex-wrap:wrap}.field{border:1px solid var(--borde);background:white;color:var(--cafe);border-radius:11px;padding:.7rem .8rem;min-width:0;width:100%}.filters .field{width:auto;min-width:180px}.menu-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.package-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-bottom:2rem}.menu-card,.package-card,.panel,.cart-panel,.ticket{background:#fffdf8;border:1px solid var(--borde);border-radius:20px;box-shadow:var(--sombra)}.menu-card,.package-card{overflow:hidden;display:flex;flex-direction:column}.package-card{background:linear-gradient(135deg,#fffbf2,#f7eedb);border:2px solid #dfc4ab;padding:1.2rem}.package-card h3{margin:0 0 .4rem;font:1.2rem Georgia,serif;color:var(--terracota-dark)}.package-card p{margin:0 0 1rem;font-size:.88rem;color:#78665a;line-height:1.4}.package-details{background:white;border:1px solid var(--borde);border-radius:12px;padding:.7rem;margin-bottom:1rem;font-size:.85rem}.package-details ul{margin:0;padding-left:1.2rem;color:#5a483e}.dish-art{height:160px;display:block;overflow:hidden;background:linear-gradient(140deg,#f7e5c9,#edd0ad);font-size:4rem}.dish-art img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .35s}.menu-card:hover .dish-art img{transform:scale(1.04)}.dish-art .dish-fallback{height:100%;display:grid;place-items:center;font-size:4rem}.dish-body{padding:1rem;display:flex;flex-direction:column;gap:.65rem;flex:1}.dish-top{display:flex;justify-content:space-between;gap:.5rem;align-items:start}.dish-top h3{margin:0;font-size:1.1rem}.price{font-weight:850;color:var(--terracota);white-space:nowrap}.dish-body p{margin:0;color:#78665a;font-size:.92rem;line-height:1.45;flex:1}.pill{display:inline-flex;align-items:center;border-radius:99px;padding:.25rem .6rem;font-size:.75rem;font-weight:800;background:#f4e7d5;color:#76523e}.pill.available{background:#e4eedf;color:#3e6135}.pill.out{background:#f8dfd9;color:#8e382e}.dish-actions{display:flex;gap:.5rem;align-items:center}.portion-select{border:1px solid var(--borde);border-radius:10px;background:white;padding:.65rem;flex:1;min-width:0}.empty{padding:2rem;text-align:center;color:#7c665a;border:1px dashed var(--borde);border-radius:18px;background:#fffaf2}.layout-two{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:1rem;align-items:start}.cart-panel{padding:1.2rem;position:sticky;top:1rem}.cart-panel h3,.panel h3{margin:.1rem 0 1rem;font:1.4rem Georgia,serif}.cart-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.5rem;padding:.8rem 0;border-bottom:1px solid #eee0ce}.cart-row small{display:block;color:#816d60;margin-top:.2rem}.quantity-controls{display:flex;align-items:center;gap:.4rem}.quantity-controls button{padding:.25rem .55rem;background:var(--crema-2);color:var(--cafe)}.total-line{display:flex;justify-content:space-between;gap:1rem;margin:.65rem 0}.grand-total{font-size:1.3rem;font-weight:900;border-top:1px solid var(--borde);padding-top:.9rem;margin-top:1rem}.full{width:100%}.muted{color:#806d60}.notice{border-radius:12px;padding:.8rem 1rem;background:#f6ead7;font-size:.9rem;margin:.8rem 0}.ticket{padding:1.25rem;max-width:520px;margin:1rem auto}.ticket-head{text-align:center;border-bottom:1px dashed #c6a78c;padding-bottom:1rem}.ticket-head h3{font:1.8rem Georgia,serif;margin:.25rem}.ticket-line{display:flex;justify-content:space-between;gap:1rem;padding:.55rem 0;border-bottom:1px dashed #e8d7c4}.ticket-total{font-size:1.3rem;font-weight:900;display:flex;justify-content:space-between;margin-top:1rem}.admin-shell{display:grid;grid-template-columns:1fr;gap:1rem}.admin-login{max-width:420px;margin:1rem auto;padding:1.5rem}.panel{padding:1.2rem}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;margin-bottom:1rem}.stat{padding:1rem;border-radius:16px;background:#f5e8d5}.stat span{display:block;color:#7c665a;font-size:.85rem}.stat strong{display:block;font-size:1.5rem;margin-top:.3rem}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:650px}th,td{text-align:left;padding:.75rem;border-bottom:1px solid #eadbc8;vertical-align:middle}th{background:#f8edde;font-size:.85rem}td input{min-width:85px;width:100%;padding:.5rem;border:1px solid var(--borde);border-radius:8px}.admin-order{border:1px solid var(--borde);border-radius:15px;padding:1rem;margin:.75rem 0;background:#fffaf2}.order-head{display:flex;justify-content:space-between;gap:.8rem;flex-wrap:wrap}.order-items{color:#725f53;font-size:.9rem;line-height:1.5}.order-actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.75rem}.status{font-size:.76rem;font-weight:850;border-radius:99px;padding:.3rem .6rem;background:#f3e4d1}.status.accepted{background:#e4eedf;color:#3d6035}.status.rejected{background:#f8dfd9;color:#8e382e}.status.done{background:#e2e8f6;color:#354e80}.admin-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}.admin-form label{font-size:.85rem;font-weight:750;display:flex;flex-direction:column;gap:.35rem}.admin-form .wide{grid-column:1/-1}.footer{text-align:center;padding:1.5rem;background:#f0dfc8;color:#76594a;font-size:.85rem}.hidden{display:none!important}.small-btn{padding:.5rem .65rem;font-size:.85rem}.top-note{font-size:.85rem;color:#fce9d7}
+    @media(max-width:900px){.menu-grid,.package-grid{grid-template-columns:repeat(1,minmax(0,1fr))}.layout-two{grid-template-columns:1fr}.cart-panel{position:static}.stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(max-width:560px){.site-header{align-items:flex-start}.header-actions{width:100%}.header-actions button{flex:1}.hero-card{align-items:flex-start}.hero-emoji{font-size:3rem}.menu-grid,.package-grid{grid-template-columns:1fr}.dish-art{height:170px}.filters{width:100%}.filters .field{flex:1;min-width:0}.stats{grid-template-columns:1fr}.admin-form{grid-template-columns:1fr}.admin-form .wide{grid-column:auto}.section-heading h2{font-size:1.55rem}.tab{flex:1}.portion-select{max-width:130px}}
+    @media print{body{background:white}.site-header,.hero,.tabs,main>section:not(#ticket-view),.footer,.no-print{display:none!important}#ticket-view{display:block!important;margin:0;padding:0}.ticket{box-shadow:none;border:0;max-width:none;margin:0;padding:0}.ticket button{display:none}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand"><div class="brand-icon">🍲</div><div><h1>Fonda José</h1><p>Comida casera hecha con cariño</p></div></div>
+    <div class="header-actions"><button id="install-btn" class="hidden">⬇ Instalar app</button><button id="show-menu-btn">🍽️ Menú y Paquetes</button><button id="show-admin-btn">🔐 Administración</button></div>
+  </header>
+  <section class="hero"><div class="hero-card"><div><h2>El sabor de casa, a un clic.</h2><p>Elige tus paquetes del día o explora el menú individual. Cocina rica, tradicional y hecha al momento.</p><p class="top-note" style="color:#805443;margin-top:.8rem">🔥 Paquetes especiales y Menú del día</p></div><div class="hero-emoji">🫔🍛</div></div></section>
+  <nav class="tabs" aria-label="Secciones"><button class="tab active" id="tab-client">🍽️ Menú y Paquetes</button><button class="tab" id="tab-admin">📋 Panel de administración</button></nav>
+  <main>
+    <section id="client-view">
+      <div class="layout-two" id="react-menu-root"><div class="empty">Cargando menú y paquetes…</div></div>
+    </section>
+    
+    <!-- Panel de Administración mejorado con Vue -->
+    <section id="admin-view" class="hidden">
+      <div id="vue-admin-root">
+        <div v-if="!logged" class="panel admin-login" style="max-width:420px;margin:2rem auto;padding:1.5rem">
+          <div style="font-size:2.5rem">🔐</div>
+          <h2 style="font:1.8rem Georgia,serif;margin:.3rem 0">Panel de administración</h2>
+          <p class="muted">Ingresa la contraseña para gestionar pedidos, precios e inventario.</p>
+          <form @submit.prevent="login">
+            <label for="admin-password" style="display:block;font-weight:750;margin:.9rem 0 .4rem">Contraseña de administrador</label>
+            <input id="admin-password" class="field" type="password" v-model="password" placeholder="Contraseña" autocomplete="current-password" required />
+            <p v-if="error" style="color:#a33b32;margin-top:.5rem">{{error}}</p>
+            <button class="btn-primary full" style="margin-top:.8rem" type="submit">Entrar al panel</button>
+          </form>
+          <div class="notice" style="margin-top:1rem">Contraseña de acceso demo: <strong>admin123</strong></div>
+        </div>
+
+        <div v-else class="admin-shell">
+          <div class="section-heading">
+            <div><h2>Panel de control</h2><p>Administra pedidos, precios y existencias de Fonda José.</p></div>
+            <button class="btn-secondary" @click="logged=false">Cerrar sesión</button>
+          </div>
+          <div class="stats">
+            <div class="stat"><span>Pedidos pendientes</span><strong>{{pending}}</strong></div>
+            <div class="stat"><span>Pedidos aceptados/entregados</span><strong>{{accepted}}</strong></div>
+            <div class="stat"><span>Ventas aceptadas</span><strong>{{new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(sales)}}</strong></div>
+          </div>
+          <div v-if="notice" class="notice">{{notice}}</div>
+          <div class="tabs" style="margin:0 0 1rem 0;padding:0">
+            <button class="tab" :class="{active:activeTab==='orders'}" @click="activeTab='orders'">📦 Pedidos</button>
+            <button class="tab" :class="{active:activeTab==='inventory'}" @click="activeTab='inventory'">🥘 Menú e inventario</button>
+            <button class="tab" :class="{active:activeTab==='add'}" @click="activeTab='add'">＋ Nuevo platillo</button>
+          </div>
+
+          <section v-if="activeTab==='orders'" class="panel">
+            <h3>Pedidos de clientes</h3>
+            <p class="muted">Al aceptar un pedido se valida el stock y se descuenta automáticamente.</p>
+            <div v-if="!orders.length" class="empty">Aún no hay pedidos. Haz uno desde la vista de cliente.</div>
+            <article v-for="order in orders" :key="order.id" class="admin-order">
+              <div class="order-head">
+                <div><strong>{{order.folio}}</strong><div class="muted" style="font-size:.85rem">{{order.customer}} · {{new Date(order.createdAt).toLocaleString('es-MX')}}</div></div>
+                <span class="status" :class="{accepted:order.status==='Aceptado',rejected:order.status==='Rechazado',done:order.status==='Entregado'}">{{order.status}}</span>
+              </div>
+              <div class="order-items">
+                <div v-for="item in order.items" :key="item.id">{{item.quantity}} × {{item.name}} — {{new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(item.subtotal)}}</div>
+              </div>
+              <div class="order-head" style="margin-top:.5rem"><strong>Total: {{new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(order.total)}}</strong></div>
+              <div v-if="order.status==='Pendiente'" class="order-actions">
+                <button class="btn-green small-btn" @click="acceptPedido(order)">✓ Aceptar pedido</button>
+                <button class="btn-danger small-btn" @click="rechazarPedido(order)">✕ Rechazar</button>
+              </div>
+              <div v-else-if="order.status==='Aceptado'" class="order-actions">
+                <button class="btn-primary small-btn" @click="entregarPedido(order)">Marcar como entregado</button>
+              </div>
+            </article>
+          </section>
+
+          <section v-if="activeTab==='inventory'" class="panel">
+            <div class="section-heading" style="margin-top:0">
+              <div><h3>Menú e inventario</h3><p>Modifica precios, stock y visibilidad de los platillos individuales.</p></div>
+              <button class="btn-primary small-btn" @click="saveMenu">Guardar cambios</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Platillo</th><th>Categoría</th><th>Precio (MXN)</th><th>Stock (porciones)</th><th>URL de imagen</th><th>Visible</th><th>Acción</th></tr></thead>
+                <tbody>
+                  <tr v-for="dish in menu.filter(d => d.active)" :key="dish.id">
+                    <td><strong>{{dish.emoji}} {{dish.name}}</strong><div class="muted" style="font-size:.8rem">{{dish.description}}</div></td>
+                    <td>{{dish.category}}</td>
+                    <td><input type="number" min="0" step="0.5" v-model.number="dish.price" aria-label="Precio"></td>
+                    <td><input type="number" min="0" step="0.5" v-model.number="dish.stock" aria-label="Stock"></td>
+                    <td><input type="url" v-model.trim="dish.image" placeholder="https://..." aria-label="URL de imagen" style="min-width:220px"></td>
+                    <td><input type="checkbox" v-model="dish.active" aria-label="Visible"></td>
+                    <td><button class="btn-danger small-btn" @click="removeDish(dish)">Retirar</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section v-if="activeTab==='add'" class="panel">
+            <h3>Agregar platillo al menú</h3>
+            <form class="admin-form" @submit.prevent="addDish">
+              <label>Nombre del platillo<input class="field" v-model="newDish.name" required placeholder="Ej. Tacos dorados"></label>
+              <label>Categoría<select class="field" v-model="newDish.category"><option>Comida corrida</option><option>Antojitos</option><option>Bebidas</option><option>Postres</option></select></label>
+              <label>Precio (MXN)<input class="field" type="number" min="0" step="0.5" v-model.number="newDish.price" required></label>
+              <label>Stock inicial (porciones)<input class="field" type="number" min="0" step="0.5" v-model.number="newDish.stock" required></label>
+              <label>Emoji<input class="field" v-model="newDish.emoji" maxlength="5" placeholder="🍽️"></label>
+              <label class="wide">Descripción<textarea class="field" v-model="newDish.description" rows="2" placeholder="Describe el platillo"></textarea></label>
+              <label class="wide">Enlace directo de imagen<input class="field" type="url" v-model.trim="newDish.image" placeholder="https://..."></label>
+              <div class="wide"><button class="btn-primary" type="submit">＋ Guardar platillo</button></div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section id="ticket-view" class="hidden"><div id="ticket-content"></div></section>
+  </main>
+  <footer class="footer">Fonda José · Menú digital y gestión de pedidos · <span id="year"></span></footer>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script>
+    const STORE = { menu: 'fonda_menu', orders: 'fonda_pedidos', inventory: 'fonda_inventario' };
+    const seedMenu = [
+      {id:'p1',name:'Enchiladas verdes',image:'https://images.unsplash.com/photo-1534352956036-cd81e27dd615?auto=format&fit=crop&w=900&q=85',category:'Comida corrida',description:'Tortillas bañadas en salsa verde, crema, queso y cebolla.',price:78,stock:12,emoji:'🌮',active:true},
+      {id:'p2',name:'Milanesa con arroz',image:'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=85',category:'Comida corrida',description:'Milanesa crujiente con arroz rojo y ensalada fresca.',price:92,stock:10,emoji:'🍗',active:true},
+      {id:'p3',name:'Sopa de fideo',image:'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85',category:'Comida corrida',description:'Sopita casera de jitomate, calientita y reconfortante.',price:38,stock:18,emoji:'🍜',active:true},
+      {id:'p4',name:'Quesadillas',image:'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=900&q=85',category:'Antojitos',description:'Tortilla doradita con queso. Pregunta por el guisado del día.',price:32,stock:20,emoji:'🫓',active:true},
+      {id:'p5',name:'Sopes de pollo',image:'https://images.unsplash.com/photo-1551509688-90d0f3d8f4b8?auto=format&fit=crop&w=900&q=85',category:'Antojitos',description:'Con frijoles, pollo, lechuga, crema y queso.',price:45,stock:14,emoji:'🫔',active:true},
+      {id:'p6',name:'Agua de jamaica',image:'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=900&q=85',category:'Bebidas',description:'Agua fresca preparada en casa.',price:22,stock:25,emoji:'🥤',active:true},
+      {id:'p7',name:'Arroz con leche',image:'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=85',category:'Postres',description:'Postre tradicional con canela.',price:28,stock:9,emoji:'🍚',active:true}
+    ];
+
+    const seedPackages = [
+      {id:'pkg1',name:'🍱 Paquete Completo del Día',description:'Plato fuerte a elegir + Sopa de fideo + Agua de jamaica + Postre.',price:135,items:['Plato fuerte (Enchiladas o Milanesa)','Sopa de fideo casera','Agua fresca de jamaica','Arroz con leche de postre'],emoji:'🍱'},
+      {id:'pkg2',name:'🍲 Paquete Sencillo (Sin Postre)',description:'Plato fuerte + Sopa de fideo + Agua fresca de jamaica.',price:115,items:['Plato fuerte a elegir','Sopa de fideo casera','Agua fresca de jamaica'],emoji:'🍲'},
+      {id:'pkg3',name:'🌮 Paquete Antojitos',description:'Orden de Quesadillas o Sopes + Agua de jamaica + Postre.',price:85,items:['Antojito (Quesadillas o Sopes)','Agua fresca de jamaica','Arroz con leche o postre del día'],emoji:'🌮'}
+    ];
+
+    function readStore(key, fallback){try{const raw=localStorage.getItem(key);return raw?JSON.parse(raw):fallback}catch(e){return fallback}}
+    function writeStore(key,value){localStorage.setItem(key,JSON.stringify(value));window.dispatchEvent(new CustomEvent('fonda-data-changed',{detail:{key}}))}
+    function ensureData(){let savedMenu=readStore(STORE.menu,null);if(!Array.isArray(savedMenu)||savedMenu.length===0)writeStore(STORE.menu,seedMenu);if(!Array.isArray(readStore(STORE.orders,null)))writeStore(STORE.orders,[]);if(!localStorage.getItem(STORE.inventory))writeStore(STORE.inventory,{updatedAt:new Date().toISOString()})}
+    function money(n){return new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(Number(n)||0)}
+    function createId(prefix){return prefix+'-'+Date.now().toString(36).toUpperCase()+'-'+Math.random().toString(36).slice(2,6).toUpperCase()}
+    ensureData();document.getElementById('year').textContent=new Date().getFullYear();
+    window.FondaStore={STORE,readStore,writeStore,money,createId};
+
+    function switchView(view){
+      const client=view==='client';
+      document.getElementById('client-view').classList.toggle('hidden',!client);
+      document.getElementById('admin-view').classList.toggle('hidden',client);
+      document.getElementById('ticket-view').classList.add('hidden');
+      document.getElementById('tab-client').classList.toggle('active',client);
+      document.getElementById('tab-admin').classList.toggle('active',!client);
+      window.dispatchEvent(new CustomEvent('fonda-view-changed',{detail:{view}}));
+    }
+    document.getElementById('show-menu-btn').addEventListener('click',()=>switchView('client'));
+    document.getElementById('show-admin-btn').addEventListener('click',()=>switchView('admin'));
+    document.getElementById('tab-client').addEventListener('click',()=>switchView('client'));
+    document.getElementById('tab-admin').addEventListener('click',()=>switchView('admin'));
+
+    window.FondaUI={
+      switchView,
+      showTicket(order){
+        document.getElementById('client-view').classList.add('hidden');
+        document.getElementById('admin-view').classList.add('hidden');
+        document.getElementById('ticket-view').classList.remove('hidden');
+        document.getElementById('tab-client').classList.remove('active');
+        document.getElementById('tab-admin').classList.remove('active');
+        document.getElementById('ticket-content').innerHTML=`<div class="ticket"><div class="ticket-head"><div style="font-size:2.2rem">🍲</div><h3>Fonda José</h3><p>Ticket de pedido</p><strong>${order.folio}</strong><p>${new Date(order.createdAt).toLocaleString('es-MX')}</p></div><div style="padding:1rem 0"><p><strong>Cliente:</strong> ${escapeHTML(order.customer||'Cliente')}</p>${order.items.map(i=>`<div class="ticket-line"><span>${i.quantity} ×${escapeHTML(i.name)}<br><small>${money(i.price)} c/u</small></span><strong>${money(i.subtotal)}</strong></div>`).join('')}<div class="ticket-total"><span>Total</span><span>${money(order.total)}</span></div><p class="muted" style="text-align:center;margin-top:1rem">¡Gracias por elegirnos! 💛</p></div><div class="no-print" style="display:flex;gap:.6rem;flex-wrap:wrap"><button class="btn-primary" onclick="window.print()">🖨️ Imprimir ticket</button><button class="btn-secondary" onclick="FondaUI.switchView('client')">Volver al menú</button></div></div>`;
+      }
+    };
+    function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+  </script>
+
+  <!-- Script del Cliente -->
+  <script>
+    window.setTimeout(function(){
+      const root=document.getElementById('react-menu-root');
+      if(!root) return;
+      const fmt=n=>new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN'}).format(Number(n)||0);
+      let menu=FondaStore.readStore(FondaStore.STORE.menu,[]);
+      if(!Array.isArray(menu)||!menu.length){menu=seedMenu;FondaStore.writeStore(FondaStore.STORE.menu,menu)}
+      let cart=[];
+      const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+      
+      function render(){
+        menu=FondaStore.readStore(FondaStore.STORE.menu,seedMenu).filter(d=>d.active!==false);
+        const search=(document.getElementById('search-menu')?.value||'').toLowerCase();
+        const cat=document.getElementById('category-filter')?.value||'Todas';
+        const visible=menu.filter(d=>d.name.toLowerCase().includes(search)&&(cat==='Todas'||d.category===cat));
+        
+        const packagesHTML = seedPackages.map(pkg => `
+          <article class="package-card">
+            <div style="display:flex;align-items:center;gap:.6rem">
+              <span style="font-size:2rem">${pkg.emoji}</span>
+              <div>
+                <h3>${esc(pkg.name)}</h3>
+                <span class="price">${fmt(pkg.price)}</span>
+              </div>
+            </div>
+            <p style="margin-top:.6rem">${esc(pkg.description)}</p>
+            <div class="package-details">
+              <strong>Incluye:</strong>
+              <ul>${pkg.items.map(i=>`<li>${esc(i)}</li>`).join('')}</ul>
+            </div>
+            <button class="btn-primary full" data-add-pkg="${esc(pkg.id)}">＋ Pedir este paquete</button>
+          </article>
+        `).join('');
+
+        const cards=visible.map(d=>`<article class="menu-card"><div class="dish-art">${d.image?`<img src="${esc(d.image)}" alt="${esc(d.name)}" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">`:''}<span class="dish-fallback" ${d.image?'style="display:none"':''}>${esc(d.emoji||'🍽️')}</span></div><div class="dish-body"><div class="dish-top"><h3>${esc(d.name)}</h3><span class="price">${fmt(d.price)}</span></div><span class="pill ${d.stock>0?'available':'out'}">${d.stock>0?'Disponible · '+d.stock+' porciones':'Agotado'}</span><p>${esc(d.description||'Platillo casero')}</p><div class="dish-actions"><select class="portion-select" id="qty-${esc(d.id)}"><option value="0.5">½ porción</option><option value="1" selected>1 porción</option><option value="2">2 porciones</option></select><button class="btn-primary" data-add="${esc(d.id)}" ${d.stock<=0?'disabled':''}>＋ Agregar</button></div></div></article>`).join('');
+        
+        const total=cart.reduce((s,x)=>s+x.price*x.quantity,0);
+        const cartHTML=cart.length?cart.map(x=>`<div class="cart-row"><div><strong>${esc(x.name)}</strong><small>${x.quantity} item(s) × ${fmt(x.price)}</small><strong>${fmt(x.price*x.quantity)}</strong></div><div class="quantity-controls"><button data-minus="${esc(x.id)}">−</button><span>${x.quantity}</span><button data-plus="${esc(x.id)}">+</button></div></div>`).join(''):`<div class="empty">Tu carrito está vacío.<br>¡Elige un paquete o platillo del menú!</div>`;
+        
+        root.innerHTML=`
+          <div>
+            <div class="section-heading" style="margin-top:0">
+              <div><h2>🔥 Paquetes especiales de la Fonda</h2><p>Combos armados con bebida, sopa o postre incluidos a precio especial.</p></div>
+            </div>
+            <div class="package-grid">${packagesHTML}</div>
+
+            <div class="section-heading">
+              <div><h2>🍲 Menú individual (A la carta)</h2><p>Si ningún paquete te convence, arma tu orden seleccionando platillos individuales.</p></div>
+              <div class="filters">
+                <input id="search-menu" class="field" type="search" placeholder="Buscar platillo…" aria-label="Buscar platillo" value="${esc(document.getElementById('search-menu')?.value||'')}">
+                <select id="category-filter" class="field" aria-label="Filtrar por categoría">
+                  <option value="Todas" ${cat==='Todas'?'selected':''}>Todas las categorías</option>
+                  <option value="Comida corrida" ${cat==='Comida corrida'?'selected':''}>Comida corrida</option>
+                  <option value="Antojitos" ${cat==='Antojitos'?'selected':''}>Antojitos</option>
+                  <option value="Bebidas" ${cat==='Bebidas'?'selected':''}>Bebidas</option>
+                  <option value="Postres" ${cat==='Postres'?'selected':''}>Postres</option>
+                </select>
+              </div>
+            </div>
+            <div class="menu-grid">${cards||'<div class="empty" style="grid-column:1/-1">No encontramos platillos con ese filtro.</div>'}</div>
+          </div>
+          <div class="cart-panel">
+            <h3>🧺 Tu carrito</h3>
+            ${cartHTML}
+            <div class="total-line grand-total"><span>Total final</span><span>${fmt(total)}</span></div>
+            <label style="display:block;font-weight:750;margin:1rem 0 .4rem" for="fallback-customer">Tu nombre (opcional)</label>
+            <input id="fallback-customer" class="field" placeholder="¿A nombre de quién?" value="${esc(window.fallbackCustomer||'')}">
+            <button class="btn-primary full" id="fallback-confirm" style="margin-top:.8rem" ${cart.length?'':'disabled'}>Confirmar pedido · ${fmt(total)}</button>
+          </div>
+        `;
+      }
+
+      root.addEventListener('click',e=>{
+        const addPkg=e.target.closest('[data-add-pkg]');
+        if(addPkg){
+          const pkg = seedPackages.find(p=>p.id===addPkg.dataset.addPkg);
+          if(pkg){
+            const found=cart.find(x=>x.id===pkg.id);
+            if(found) found.quantity+=1;
+            else cart.push({id:pkg.id, name:pkg.name, price:pkg.price, quantity:1});
+            render();
+          }
+          return;
+        }
+
+        const add=e.target.closest('[data-add]'); 
+        if(add){
+          const d=menu.find(x=>x.id===add.dataset.add);
+          const qty=Number(document.getElementById('qty-'+d.id).value);
+          const current=cart.find(x=>x.id===d.id)?.quantity||0;
+          if(current+qty>d.stock){alert('No hay suficientes porciones disponibles.');return}
+          const found=cart.find(x=>x.id===d.id);
+          if(found) found.quantity+=qty;
+          else cart.push({...d,quantity:qty});
+          render();
+          return;
+        }
+
+        const minus=e.target.closest('[data-minus]');
+        if(minus){
+          const x=cart.find(x=>x.id===minus.dataset.minus);
+          if(x) x.quantity-= (x.quantity > 1 && x.id.startsWith('pkg') ? 1 : 0.5);
+          cart=cart.filter(x=>x.quantity>0);
+          render();
+          return;
+        }
+
+        const plus=e.target.closest('[data-plus]');
+        if(plus){
+          const x=cart.find(x=>x.id===plus.dataset.plus);
+          if(x){
+            if(x.id.startsWith('pkg')) x.quantity+=1;
+            else {
+              const d=menu.find(d=>d.id===plus.dataset.plus);
+              if(d && x.quantity+.5<=d.stock) x.quantity+=.5;
+              else alert('No hay suficientes porciones disponibles.');
+            }
+          }
+          render();
+          return;
+        }
+
+        if(e.target.closest('#fallback-confirm')){
+          if(!cart.length)return;
+          const name=document.getElementById('fallback-customer').value.trim()||'Cliente';
+          const total=cart.reduce((s,x)=>s+x.price*x.quantity,0);
+          const order={id:FondaStore.createId('PED'),folio:'FJ-'+Date.now().toString().slice(-6),customer:name,items:cart.map(x=>({id:x.id,name:x.name,quantity:x.quantity,price:x.price,subtotal:x.price*x.quantity})),total,status:'Pendiente',createdAt:new Date().toISOString()};
+          FondaStore.writeStore(FondaStore.STORE.orders,[order,...FondaStore.readStore(FondaStore.STORE.orders,[])]);
+          cart=[];
+          FondaUI.showTicket(order);
+        }
+      });
+
+      root.addEventListener('change',e=>{
+        if(e.target.id==='search-menu'||e.target.id==='category-filter')render();
+        if(e.target.id==='fallback-customer')window.fallbackCustomer=e.target.value;
+      });
+
+      document.addEventListener('input',e=>{if(e.target.id==='search-menu'||e.target.id==='category-filter')render();});
+      window.addEventListener('fonda-data-changed',render);
+      render();
+    },0);
+  </script>
+
+  <!-- Script del Panel de Administración (Vue 3) -->
+  <script>
+    const {createApp}=Vue;
+    createApp({
+      data(){
+        return {
+          logged:false,
+          password:'',
+          error:'',
+          menu:FondaStore.readStore(FondaStore.STORE.menu,[]),
+          orders:FondaStore.readStore(FondaStore.STORE.orders,[]),
+          newDish:{name:'',category:'Comida corrida',description:'',price:0,stock:0,emoji:'🍽️',image:''},
+          notice:'',
+          activeTab:'orders'
+        }
+      },
+      computed:{
+        pending(){return this.orders.filter(o=>o.status==='Pendiente').length},
+        sales(){return this.orders.filter(o=>o.status==='Aceptado'||o.status==='Entregado').reduce((s,o)=>s+o.total,0)},
+        accepted(){return this.orders.filter(o=>o.status==='Aceptado'||o.status==='Entregado').length}
+      },
+      mounted(){
+        window.addEventListener('fonda-data-changed',this.refreshData);
+        window.addEventListener('fonda-view-changed',e=>{if(e.detail.view==='admin')this.refreshData()});
+      },
+      methods:{
+        refreshData(){
+          this.menu=FondaStore.readStore(FondaStore.STORE.menu,[]);
+          this.orders=FondaStore.readStore(FondaStore.STORE.orders,[]);
+        },
+        login(){
+          if(this.password==='admin123'){
+            this.logged=true;
+            this.error='';
+            this.password='';
+            this.refreshData();
+          } else {
+            this.error='Contraseña incorrecta. Intenta de nuevo.';
+          }
+        },
+        saveMenu(){
+          FondaStore.writeStore(FondaStore.STORE.menu,this.menu);
+          this.notice='Menú e inventario guardados correctamente.';
+          setTimeout(()=>this.notice='',2600);
+        },
+        acceptPedido(order){
+          if(order.status!=='Pendiente')return;
+          const latestMenu=FondaStore.readStore(FondaStore.STORE.menu,[]);
+          for(const item of order.items){
+            if(!item.id.startsWith('pkg')){
+              const product=latestMenu.find(p=>p.id===item.id);
+              if(!product||product.stock<item.quantity){
+                alert(`No hay suficiente inventario para ${item.name}. Ajusta el stock o rechaza el pedido.`);
+                this.refreshData();
+                return;
+              }
+            }
+          }
+          for(const item of order.items){
+            if(!item.id.startsWith('pkg')){
+              const product=latestMenu.find(p=>p.id===item.id);
+              if(product) product.stock=Number((product.stock-item.quantity).toFixed(2));
+            }
+          }
+          const latestOrders=FondaStore.readStore(FondaStore.STORE.orders,[]);
+          const idx=latestOrders.findIndex(o=>o.id===order.id);
+          if(idx<0||latestOrders[idx].status!=='Pendiente')return;
+          latestOrders[idx].status='Aceptado';
+          latestOrders[idx].acceptedAt=new Date().toISOString();
+          FondaStore.writeStore(FondaStore.STORE.menu,latestMenu);
+          FondaStore.writeStore(FondaStore.STORE.orders,latestOrders);
+          this.refreshData();
+          this.notice=`Pedido ${order.folio} aceptado con éxito.`;
+          setTimeout(()=>this.notice='',3500);
+        },
+        rechazarPedido(order){
+          if(order.status!=='Pendiente')return;
+          const latestOrders=FondaStore.readStore(FondaStore.STORE.orders,[]);
+          const idx=latestOrders.findIndex(o=>o.id===order.id);
+          if(idx<0)return;
+          latestOrders[idx].status='Rechazado';
+          latestOrders[idx].rejectedAt=new Date().toISOString();
+          FondaStore.writeStore(FondaStore.STORE.orders,latestOrders);
+          this.refreshData();
+        },
+        entregarPedido(order){
+          if(order.status!=='Aceptado')return;
+          const latestOrders=FondaStore.readStore(FondaStore.STORE.orders,[]);
+          const idx=latestOrders.findIndex(o=>o.id===order.id);
+          if(idx>=0){
+            latestOrders[idx].status='Entregado';
+            latestOrders[idx].deliveredAt=new Date().toISOString();
+            FondaStore.writeStore(FondaStore.STORE.orders,latestOrders);
+            this.refreshData();
+          }
+        },
+        addDish(){
+          if(!this.newDish.name.trim()||Number(this.newDish.price)<0||Number(this.newDish.stock)<0){
+            alert('Completa el nombre y usa precio/stock válidos.');
+            return;
+          }
+          this.menu.push({...this.newDish,id:FondaStore.createId('PLAT'),price:Number(this.newDish.price),stock:Number(this.newDish.stock),active:true});
+          this.newDish={name:'',category:'Comida corrida',description:'',price:0,stock:0,emoji:'🍽️',image:''};
+          this.saveMenu();
+        },
+        removeDish(dish){
+          if(!confirm(`¿Eliminar ${dish.name} del menú?`))return;
+          dish.active=false;
+          this.saveMenu();
+        }
+      }
+    }).mount('#vue-admin-root');
+  </script>
+</body>
+</html>
